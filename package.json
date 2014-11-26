@@ -1,0 +1,16 @@
+{
+  "name": "ManageSocketUsers",
+  "version": "0.0.1",
+  "description": "Simple Example of how to manage connected clients.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Taylor Brazelton",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "lodash": "~2.4.1",
+    "express": "~4.10.4",
+    "socket.io": "~1.2.1"
+  }
+}
