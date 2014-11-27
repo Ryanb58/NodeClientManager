@@ -21,17 +21,17 @@ Manager.prototype.getClient = function(id)
         if(client.getId == id)
         {
             return true;
-        };
+        }
     });
 }
 
 Manager.prototype.removeClient = function(id)
 {
-    _.remove(this.clients, function(client){
-        if(client.getId == id)
+    return _.remove(this.clients, function(client){
+        if(client.getId() == id)
         {
             return true;
-        };
+        }
     });
 }
 

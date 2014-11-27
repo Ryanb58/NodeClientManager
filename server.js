@@ -16,6 +16,16 @@ manager.addClient(client2);
 manager.addClient(client3);
 manager.addClient(client4);
 
-_.forEach(manager.getClientList(), function(client){
-    console.log(client.getName());
-});
+printClients();
+
+console.log("Removing client: 2");
+console.log("Removed: " + manager.removeClient(2));
+
+printClients();
+
+/** Functions/Methods **/
+function printClients(){
+    _.forEach(manager.getClientList(), function(client){
+        console.log(client.getName());
+    });
+}
