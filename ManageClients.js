@@ -17,8 +17,8 @@ Manager.prototype.addClient = function(client)
 
 Manager.prototype.getClient = function(id)
 {
-    _.filter(this.clients, function(client){
-        if(client.getId == id)
+    return _.filter(this.clients, function(client){
+        if(client.getId() == id)
         {
             return true;
         }
