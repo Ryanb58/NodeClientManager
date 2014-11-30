@@ -5,18 +5,23 @@
  *
  */
 
-//Include Cards Model maybe... if so do it here.
 var _ = require('lodash');
 
 //Model of a player.
-function Client(id, name) {
+function Client(id, socket, name) {
     this.id = id;
+    this.socket = socket;
     this.name = name;
 }
 
 Client.prototype.getId = function()
 {
     return this.id;
+}
+
+Client.prototype.getSocket = function()
+{
+    return this.socket;
 }
 
 Client.prototype.getName = function()

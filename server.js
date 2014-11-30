@@ -1,38 +1,52 @@
 //Controllers and Models.
 var Manager = require('./ManageClients.js');
 var Client = require('./Client.js');
+
 var _ = require('lodash');
 
-//Init.
+var app = require('express')();
+var server = require('http').createServer(app);
+var io = require('socket.io')(server);
+
+//Initilize the client manager.
 var manager = new Manager();
 
-var client1 = new Client(1, "Taylor");
-var client2 = new Client(2, "Ryan");
-var client3 = new Client(3, "John");
-var client4 = new Client(4, "Gerrit");
+global.__base = __dirname + '/';
 
-//Add a couple clients.
-manager.addClient(client1);
-manager.addClient(client2);
-manager.addClient(client3);
-manager.addClient(client4);
+//Send a simple webpage for the client to interact with, and to connect to the server socket.
+app.get('/', function(req, res){
+    res.sendFile( __base + 'Client/index.html');
+});
 
-//Print the current clients.
-printClients();
+//Accept incomming socket connections.
+io.on('connection', function(socket){
 
-console.log("Removing client: 2");
-console.log("Removed: " + manager.removeClient(2));
+    console.log("User Connected.");
 
-printClients();
+    //Add a new client.
+    socket.on('add:client', function(name){
 
-console.log("Getting player 3:");
-var clientnum3 = manager.getClient(3);
-console.log(clientnum3);
+        manager.addClient(new Client(socket.id, socket, name));
 
+        printClients();
+
+    });
+
+    //Make sure to remove them when they disconnect.
+    socket.on('disconnect', function(){
+        manager.removeClient(socket.id);
+
+        printClients();
+
+    });
+
+});
+
+server.listen(8080);
 
 /** Functions/Methods **/
 function printClients(){
     _.forEach(manager.getClientList(), function(client){
-        console.log(client.getName());
+        console.log(client.getId() + ") " + client.getName());
     });
 }

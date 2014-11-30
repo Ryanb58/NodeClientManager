@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Connect</title>
+    <link rel="StyleSheet" href="style.css" type="text/css" media="screen">
+  </head>
+  <body>
+    <form action="">
+      Name<input id="name" /><button>Connect</button>
+    </form>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+<script>
+var socket = io();
+
+$('form').submit(function(){
+    socket.emit('add:client',$('#name').val());
+    return false;
+});
+
+</script>
+  </body>
+</html>
