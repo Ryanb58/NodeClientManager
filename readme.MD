@@ -1,4 +1,4 @@
-Node Client Manager
+Prototype - Node Client Manager
 ===================
 
 Requirements:
@@ -6,4 +6,4 @@ Requirements:
  - Node.js
  - lodash
 
-CAUTION: This is a work in progress. Please do not use, or distribute until the first beta.
+CAUTION: Please do not use.
